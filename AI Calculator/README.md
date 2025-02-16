@@ -1,31 +1,27 @@
-**User Guide: AI Calculator**
+**Calculator ChatBot**
+Description
+This project is a simple calculator ChatBot that can perform mathematical evaluations based on user input. The ChatBot is built using the ChatterBot library and is configured to be read-only, meaning it will not learn from user inputs.
 
-This user guide provides step-by-step instructions on how to use the AI Calculator script in the Amazing-Python-Scripts repository. This script uses the ChatterBot library to create a calculator chatbot that can evaluate mathematical expressions.
+Installation
+To use this calculator ChatBot, you need to have Python installed on your system along with the following libraries:
 
-**Step 1: Install Dependencies**
-Before you can use the AI Calculator script, you need to make sure that you have all the necessary dependencies installed. This script requires Python 3 and the ChatterBot library. To install these dependencies, open a terminal or command prompt and run the following command:
-```
-pip install chatterbot
-```
+ChatterBot
 
-**Step 2: Download the Script**
-Next, you need to download the AI Calculator script from the Amazing-Python-Scripts repository. You can do this by visiting the repository on GitHub and navigating to the `AI Calculator` directory. From there, you can download the `main.py` file to your computer.
+ChatterBot Corpus
 
-**Step 3: Run the Script**
-Once you have downloaded the script, you can run it by opening a terminal or command prompt, navigating to the directory where you saved the file, and running the following command:
-```
-python main.py
-```
-This will start the script and open a command-line interface where you can interact with the calculator chatbot.
+You can install these libraries using pip:
 
-**Step 4: Use the Calculator**
-To use the AI Calculator, simply type a mathematical expression at the prompt and press enter. The calculator chatbot will evaluate the expression and return the result. For example:
-```
-me: 2 + 2
-Calculator: 4
-```
-You can enter any valid mathematical expression, including addition, subtraction, multiplication, division, and exponentiation. The calculator chatbot will evaluate the expression and return the result.
+bash
+pip install chatterbot chatterbot-corpus
+Usage
+Save the provided code in a file, for example, calculator_bot.py.
 
-To exit the calculator, simply type `quit` at the prompt and press enter.
+Open a terminal or command prompt and navigate to the directory where the file is saved.
 
-You can experiment with different expressions to see how they are evaluated by the calculator chatbot.
+Run the script using Python:
+
+bash
+python calculator_bot.py
+The ChatBot will greet you and wait for your input. You can type mathematical expressions like 2 + 2 or sqrt(16), and the ChatBot will evaluate them.
+
+To exit the program, type quit.

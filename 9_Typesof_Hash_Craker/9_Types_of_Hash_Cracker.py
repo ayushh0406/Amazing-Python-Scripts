@@ -7,33 +7,11 @@ import os
 import string
 import threading
 import time
+import logging
 
 
 class Cracker(object):
-    ALPHA_LOWER = (string.ascii_lowercase,)
-    ALPHA_UPPER = (string.ascii_uppercase,)
-    ALPHA_MIXED = (string.ascii_lowercase, string.ascii_uppercase)
-    PUNCTUATION = (string.punctuation,)
-    NUMERIC = (''.join(map(str, range(0, 10))),)
-    ALPHA_LOWER_NUMERIC = (string.ascii_lowercase,
-                           ''.join(map(str, range(0, 10))))
-    ALPHA_UPPER_NUMERIC = (string.ascii_uppercase,
-                           ''.join(map(str, range(0, 10))))
-    ALPHA_MIXED_NUMERIC = (
-        string.ascii_lowercase, string.ascii_uppercase, ''.join(map(str, range(0, 10))))
-    ALPHA_LOWER_PUNCTUATION = (string.ascii_lowercase, string.punctuation)
-    ALPHA_UPPER_PUNCTUATION = (string.ascii_uppercase, string.punctuation)
-    ALPHA_MIXED_PUNCTUATION = (
-        string.ascii_lowercase, string.ascii_uppercase, string.punctuation)
-    NUMERIC_PUNCTUATION = (''.join(map(str, range(0, 10))), string.punctuation)
-    ALPHA_LOWER_NUMERIC_PUNCTUATION = (string.ascii_lowercase, ''.join(
-        map(str, range(0, 10))), string.punctuation)
-    ALPHA_UPPER_NUMERIC_PUNCTUATION = (string.ascii_uppercase, ''.join(
-        map(str, range(0, 10))), string.punctuation)
-    ALPHA_MIXED_NUMERIC_PUNCTUATION = (
-        string.ascii_lowercase, string.ascii_uppercase, ''.join(
-            map(str, range(0, 10))), string.punctuation
-    )
+    # ... (Your existing code for character sets)
 
     def __init__(self, hash_type, hash, charset, progress_interval):
         """
@@ -50,6 +28,16 @@ class Cracker(object):
         self.__hash_type = hash_type
         self.__hash = hash
         self.__hashers = {}
+        self.__init_logger()
+
+    def __init_logger(self):
+        self.logger = logging.getLogger(__name__)
+        self.logger.setLevel(logging.DEBUG)
+        handler = logging.StreamHandler()
+        handler.setLevel(logging.DEBUG)
+        formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+        handler.setFormatter(formatter)
+        self.logger.addHandler(handler)
 
     def __init_hasher(self):
         hashlib_type = self.__hash_type if self.__hash_type != "ntlm" else "md4"
@@ -121,46 +109,21 @@ class Cracker(object):
         self.__progress_timer = threading.Timer(
             self.__progress_interval, self.start_reporting_progress)
         self.__progress_timer.start()
-        print(
-            f"Character set: {self.__charset}, iteration: {self.__curr_iter}, trying: {self.__curr_val}, hashes/sec: {self.__curr_iter - self.__prev_iter}",
-            flush=True)
+        self.logger.info(f"Character set: {self.__charset}, iteration: {self.__curr_iter}, trying: {self.__curr_val}, hashes/sec: {self.__curr_iter - self.__prev_iter}")
         self.__prev_iter = self.__curr_iter
 
     def stop_reporting_progress(self):
         self.__progress_timer.cancel()
-        print(
-            f"Finished character set {self.__charset} after {self.__curr_iter} iterations", flush=True)
+        self.logger.info(f"Finished character set {self.__charset} after {self.__curr_iter} iterations")
 
 
 if __name__ == "__main__":
     character_sets = {
-        "01": Cracker.ALPHA_LOWER,
-        "02": Cracker.ALPHA_UPPER,
-        "03": Cracker.ALPHA_MIXED,
-        "04": Cracker.NUMERIC,
-        "05": Cracker.ALPHA_LOWER_NUMERIC,
-        "06": Cracker.ALPHA_UPPER_NUMERIC,
-        "07": Cracker.ALPHA_MIXED_NUMERIC,
-        "08": Cracker.PUNCTUATION,
-        "09": Cracker.ALPHA_LOWER_PUNCTUATION,
-        "10": Cracker.ALPHA_UPPER_PUNCTUATION,
-        "11": Cracker.ALPHA_MIXED_PUNCTUATION,
-        "12": Cracker.NUMERIC_PUNCTUATION,
-        "13": Cracker.ALPHA_LOWER_NUMERIC_PUNCTUATION,
-        "14": Cracker.ALPHA_UPPER_NUMERIC_PUNCTUATION,
-        "15": Cracker.ALPHA_MIXED_NUMERIC_PUNCTUATION
+        # ... (Your existing character sets)
     }
 
     hashes = {
-        "01": "MD5",
-        "02": "MD4",
-        "03": "LM",
-        "04": "NTLM",
-        "05": "SHA1",
-        "06": "SHA224",
-        "07": "SHA256",
-        "08": "SHA384",
-        "09": "SHA512"
+        # ... (Your existing hashes)
     }
 
     prompt = "Specify the character set to use:{}{}".format(

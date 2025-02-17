@@ -1,4 +1,4 @@
-<h1 align="center">FLEURY ALGORITHM</h1>
+<h1 align="center">FLEURY IMPACT  ALGORITHM</h1>
 
 _______________________________________________________________________
 

@@ -1,6 +1,4 @@
-
 import random
-
 
 def play_game():
     print("Welcome to the Number Guessing Game!")
@@ -13,22 +11,20 @@ def play_game():
     correct_guess = False
 
     while not correct_guess:
+        guess_count += 1
         guess = random.randint(low, high)
-        print("Is your number", guess, "?")
-        user_input = input("Enter 'y', 'l', or 'h': ")
+        print(f"Is your number {guess}?")
+        user_input = input("Enter 'y', 'l', or 'h': ").lower()
 
         if user_input == "y":
-            print("I guessed it! Your number is", guess)
-            print("I made", guess_count, "guesses.")
+            print(f"I guessed it! Your number is {guess}.")
+            print(f"I made {guess_count} guesses.")
             correct_guess = True
         elif user_input == "l":
             high = guess - 1
-            guess_count += 1
         elif user_input == "h":
             low = guess + 1
-            guess_count += 1
         else:
             print("Invalid input. Please try again.")
-
 
 play_game()

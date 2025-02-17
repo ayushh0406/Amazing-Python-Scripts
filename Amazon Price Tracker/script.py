@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 import time
 import smtplib
 from email.mime.text import MIMEText
+import os
 
 
 def get_amazon_product_price(product_url):

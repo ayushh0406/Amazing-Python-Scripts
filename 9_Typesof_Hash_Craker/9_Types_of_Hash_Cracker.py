@@ -9,17 +9,10 @@ import threading
 import time
 import logging
 
-
 class Cracker(object):
     # ... (Your existing code for character sets)
 
     def __init__(self, hash_type, hash, charset, progress_interval):
-        """
-        Sets the hash type and actual hash to be used
-        :param hash_type: What algorithm we want to use
-        :param hash: The hash in base64 format
-        :return:
-        """
         self.__charset = charset
         self.__curr_iter = 0
         self.__prev_iter = 0
@@ -51,14 +44,6 @@ class Cracker(object):
 
     @staticmethod
     def __search_space(charset, maxlength):
-        """
-        Generates the search space for us to attack using a generator
-        We could never pregenerate this as it would take too much time and require godly amounts of memory
-        For example, generating a search space with a rough size of 52^8 would take over 50TB of RAM
-        :param charset: The character set to generate a search space for
-        :param maxlength: Maximum length the search space should be capped at
-        :return:
-        """
         return (
             ''.join(candidate) for candidate in
             itertools.chain.from_iterable(
@@ -68,13 +53,6 @@ class Cracker(object):
         )
 
     def __attack(self, q, max_length):
-        """
-        Tries all possible combinations in the search space to try and find a match.
-        This is an extremely tight loop so we need to inline and reduce work as much as we can in here.
-        :param q: Work queue
-        :param max_length: Maximum length of the character set to attack
-        :return:
-        """
         self.__init_hasher()
         self.start_reporting_progress()
         hash_fn = self.__encode_utf8 if self.__hash_type != "ntlm" else self.__encode_utf16le
@@ -95,13 +73,6 @@ class Cracker(object):
 
     @staticmethod
     def work(work_q, done_q, max_length):
-        """
-        Take the data given to us from some process and kick off the work
-        :param work_q: This is what will give us work from some other process
-        :param done_q: Used to signal the parent from some other process when we are done
-        :param max_length: Maximum length of the character set
-        :return:
-        """
         obj = work_q.get()
         obj.__attack(done_q, max_length)
 
@@ -115,7 +86,6 @@ class Cracker(object):
     def stop_reporting_progress(self):
         self.__progress_timer.cancel()
         self.logger.info(f"Finished character set {self.__charset} after {self.__curr_iter} iterations")
-
 
 if __name__ == "__main__":
     character_sets = {
@@ -176,48 +146,3 @@ if __name__ == "__main__":
             print("{}Something is wrong with the format of the hash. Please enter a valid hash".format(
                 os.linesep))
             continue
-        else:
-            break
-
-    print(f"Trying to crack hash {user_hash}", flush=True)
-    processes = []
-    work_queue = multiprocessing.Queue()
-    done_queue = multiprocessing.Queue()
-    progress_interval = 3
-    cracker = Cracker(hash_type.lower(), user_hash.lower(),
-                      ''.join(selected_charset), progress_interval)
-    start_time = time.time()
-    p = multiprocessing.Process(target=Cracker.work,
-                                args=(work_queue, done_queue, password_length))
-    processes.append(p)
-    work_queue.put(cracker)
-    p.start()
-
-    if len(selected_charset) > 1:
-        for i in range(len(selected_charset)):
-            progress_interval += .2
-            cracker = Cracker(hash_type.lower(), user_hash.lower(),
-                              selected_charset[i], progress_interval)
-            p = multiprocessing.Process(target=Cracker.work,
-                                        args=(work_queue, done_queue, password_length))
-            processes.append(p)
-            work_queue.put(cracker)
-            p.start()
-
-    failures = 0
-    while True:
-        data = done_queue.get()
-        if data == "NOT FOUND":
-            failures += 1
-        elif data == "FOUND":
-            print(done_queue.get())
-            for p in processes:
-                p.terminate()
-
-            break
-
-        if failures == len(processes):
-            print("{}No matches found{}".format(os.linesep, os.linesep))
-            break
-
-    print("Took {} seconds".format(time.time() - start_time))

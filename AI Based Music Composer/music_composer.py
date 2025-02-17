@@ -21,21 +21,26 @@ num_music_pieces = 3
 steps_per_music_piece = 128
 
 # User input for preferred genre and tempo
-preferred_genre = input(
-    "Enter your preferred genre (e.g., classical, jazz, rock): ")
-preferred_tempo = int(input("Enter your preferred tempo (BPM): "))
+preferred_genre = input("Enter your preferred genre (e.g., classical, jazz, rock, blues, pop): ")
+try:
+    preferred_tempo = int(input("Enter your preferred tempo (BPM): "))
+except ValueError:
+    print("Invalid input for tempo. Setting to default (120 BPM).")
+    preferred_tempo = 120
 
-# Chord progression for the chosen genre (you can add more genres and progressions)
+# Chord progression for the chosen genre
 chord_progressions = {
     "classical": ["C", "Am", "F", "G"],
     "jazz": ["Cmaj7", "Dm7", "Em7", "A7"],
     "rock": ["C", "G", "Am", "F"],
+    "blues": ["C7", "F7", "G7", "C7"],
+    "pop": ["C", "G", "Am", "F"]
 }
 
-# Basic drum pattern for accompaniment
+# Refined drum pattern for accompaniment
 drum_pattern = mm.DrumTrack(
-    # Kick drum and Hi-hat pattern (adjust as needed)
-    [36, 0, 42, 0, 36, 0, 42, 0],
+    # Kick drum, snare, and hi-hat pattern (adjust as needed)
+    [36, 0, 42, 0, 36, 0, 42, 0, 38, 0, 42, 0, 36, 0, 46, 0],
     start_step=0,
     steps_per_bar=steps_per_music_piece // 4,
     steps_per_quarter=4,

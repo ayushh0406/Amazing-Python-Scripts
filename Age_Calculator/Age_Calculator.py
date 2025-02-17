@@ -1,26 +1,23 @@
 from datetime import date
 
-
 def calculate_age(birthday):
     today = date.today()
-
-    # Check if the birthdate is in the future
+    
     if today < birthday:
         return "Invalid birthdate. Please enter a valid date."
-
-    day_check = ((today.month, today.day) < (birthday.month, birthday.day))
-    year_diff = today.year - birthday.year - day_check
-    remaining_months = abs((12-birthday.month)+today.month)
-    remaining_days = abs(today.day - birthday.day)
-
-    # Return the age as a formatted string
-    age_string = f"Age: {year_diff} years, {remaining_months} months, and {remaining_days} days"
-    return age_string
-
+    
+    year_diff = today.year - birthday.year
+    has_had_birthday = ((today.month, today.day) < (birthday.month, birthday.day))
+    year_diff -= has_had_birthday
+    
+    remaining_months = today.month - birthday.month if today.month >= birthday.month else 12 + today.month - birthday.month
+    remaining_days = today.day - birthday.day if today.day >= birthday.day else (date(today.year, today.month + 1, 1) - date(today.year, today.month, birthday.day)).days
+    
+    return f"Age: {year_diff} years, {remaining_months} months, and {remaining_days} days"
 
 if __name__ == "__main__":
-    print(" Age Calculator By Python")
-
+    print("Age Calculator by Python")
+    
     try:
         birthYear = int(input("Enter the birth year: "))
         birthMonth = int(input("Enter the birth month: "))

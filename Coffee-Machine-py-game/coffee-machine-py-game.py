@@ -1,3 +1,4 @@
+import os
 class CoffeeMachine:
     def __init__(self):
         # Initialize the quantities of resources and money

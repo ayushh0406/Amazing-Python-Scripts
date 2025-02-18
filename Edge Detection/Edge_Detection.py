@@ -3,6 +3,7 @@
  '''
 # Importing openCV library
 import cv2 as cv
+import os 
 
 # Taking path of input from the user
 path = input("Enter the path of uploaded image: ")

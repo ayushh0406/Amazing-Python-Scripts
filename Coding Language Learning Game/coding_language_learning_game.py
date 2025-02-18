@@ -1,5 +1,6 @@
 import random
 import time
+import os
 
 # Dictionary containing Python code snippets and their expected outputs
 code_snippets = {

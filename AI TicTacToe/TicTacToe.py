@@ -1,5 +1,6 @@
 import os
 import random
+import os
 
 
 def display_board(board):

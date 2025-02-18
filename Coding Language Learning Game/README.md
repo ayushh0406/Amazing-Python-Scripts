@@ -1,4 +1,4 @@
-# Coding Language Learning Game
+# Coding Language Learning Games
 
 This is a Python-based interactive game that helps users learn coding languages by solving programming challenges in a gamified environment. Players have to guess the output of Python code snippets, earn points for correct guesses, and progress through different difficulty levels.
 

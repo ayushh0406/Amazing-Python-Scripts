@@ -4,6 +4,8 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
 from fpdf import FPDF
+import os
+import pandas as pd
 
 # Get input for category and number of articles
 category = input("Enter category: ")

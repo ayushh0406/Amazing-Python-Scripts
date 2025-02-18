@@ -1,6 +1,8 @@
 import csv
-from gmplot import gmplot  # importing
-
+from gmplot import gmplot
+# importing
+import pandas as pd
+import seaborn as sn
 Path = input("Enter the path of your csv file , with filename and extension : ")
 Zoom = int(
     input("Enter your zoom level (less value zoom out , large value zoom in ) : "))

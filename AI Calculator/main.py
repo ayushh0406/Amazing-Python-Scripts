@@ -1,3 +1,5 @@
+import os
+
 from chatterbot import ChatBot
 import os
 # naming the ChatBot calculator

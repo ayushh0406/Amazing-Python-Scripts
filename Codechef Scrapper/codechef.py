@@ -1,3 +1,4 @@
+import pandas as pd
 from fpdf import FPDF
 from selenium.common.exceptions import TimeoutException
 from selenium.common.exceptions import NoSuchElementException

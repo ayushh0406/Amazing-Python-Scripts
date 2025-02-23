@@ -1,3 +1,4 @@
+import numpy as np
 import os
 
 # Define the JPEG signature header and footer

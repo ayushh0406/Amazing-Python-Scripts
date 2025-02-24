@@ -1,3 +1,6 @@
+import random
+import os
+
 import requests
 import pyfiglet
 import itertools

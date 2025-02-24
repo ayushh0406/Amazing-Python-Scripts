@@ -1,3 +1,4 @@
+import cv2
 import os
 
 data_folder = 'td_data'

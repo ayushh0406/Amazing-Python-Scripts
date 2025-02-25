@@ -1,6 +1,5 @@
 from chatterbot import ChatBot
-import os
-# naming the ChatBot calculator
+
 # using mathematical evaluation logic
 # the calculator AI will not learn with the user input
 Bot = ChatBot(name='Calculator',

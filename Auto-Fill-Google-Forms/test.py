@@ -1,3 +1,4 @@
+import cv2
 import csv
 import time
 from selenium import webdriver

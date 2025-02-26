@@ -1,3 +1,5 @@
+import random
+import os
 import string as st
 import pyperclip
 

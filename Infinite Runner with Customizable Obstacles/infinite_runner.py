@@ -1,3 +1,5 @@
+import os
+import cv2
 import pygame
 import random
 import math

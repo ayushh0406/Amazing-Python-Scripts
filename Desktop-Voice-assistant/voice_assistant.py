@@ -1,3 +1,5 @@
+import time
+import os
 import pyttsx3
 import datetime
 import speech_recognition as sr

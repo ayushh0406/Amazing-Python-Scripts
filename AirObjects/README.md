@@ -1,5 +1,5 @@
 
-### Air Object Detector
+### Air Objectt Detector
 
 Install with Pypi:
 

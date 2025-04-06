@@ -2,6 +2,8 @@
 
 This user guide provides step-by-step instructions on how to use the AI Calculator script in the Amazing-Python-Scripts repository. This script uses the ChatterBot library to create a calculator chatbot that can evaluate mathematical expressions.
 
+Calculator
+
 **Step 1: Install Dependencies**
 Before you can use the AI Calculator script, you need to make sure that you have all the necessary dependencies installed. This script requires Python 3 and the ChatterBot library. To install these dependencies, open a terminal or command prompt and run the following command:
 ```

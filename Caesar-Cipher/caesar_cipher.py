@@ -2,6 +2,7 @@ import random
 import os
 import string as st
 import pyperclip
+import numpy as np
 
 letter_list = st.ascii_lowercase
 alphabet = [letter for letter in letter_list]*2

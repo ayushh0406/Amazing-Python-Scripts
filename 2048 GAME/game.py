@@ -1,3 +1,4 @@
+import	random
 # 2048.py
 
 # importing the logic.py file

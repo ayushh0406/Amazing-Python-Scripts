@@ -1,3 +1,5 @@
+import os
+import time
 from tkinter import *
 from geopy.geocoders import Nominatim
 from geopy import distance

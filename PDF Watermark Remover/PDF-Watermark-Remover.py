@@ -1,3 +1,4 @@
+import time
 from skimage import io
 from PyPDF2 import PdfFileReader
 from pdf2image import convert_from_path

@@ -1,3 +1,4 @@
+import os
 # Spectral Subtraction: Method used for noise reduction
 import scipy.io.wavfile as wav
 import numpy as np

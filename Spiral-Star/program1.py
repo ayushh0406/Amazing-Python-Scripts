@@ -1,3 +1,5 @@
+import time
+import os
 # importing turtle module
 import turtle
 

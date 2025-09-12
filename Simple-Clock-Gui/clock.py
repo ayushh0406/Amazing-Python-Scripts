@@ -1,3 +1,5 @@
+import os
+import time
 from tkinter import *  # import everything from tkinter module
 from time import strftime  # import strftime from time module for getting the time
 

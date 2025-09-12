@@ -1,3 +1,4 @@
+import time
 import cv2
 file_path = input("Enter the exact file path to the video: ")
 cap = cv2.VideoCapture(file_path)

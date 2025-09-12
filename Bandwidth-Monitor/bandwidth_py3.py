@@ -1,3 +1,5 @@
+import numpy as np
+
 # Contributed via : https://github.com/adarshkushwah/Network-Usage-Tracker
 
 import os

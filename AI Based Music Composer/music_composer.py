@@ -1,3 +1,5 @@
+import *
+import numpy as np
 import os
 import magenta.music as mm
 from magenta.models.melody_rnn import melody_rnn_sequence_generator

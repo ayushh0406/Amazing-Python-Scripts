@@ -1,4 +1,4 @@
-import os
+import osss
 from selenium import webdriver  # Automated webdriver
 from PIL import Image
 from fpdf import FPDF  # For converting images to pdf
